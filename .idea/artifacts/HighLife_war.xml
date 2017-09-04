@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="HighLife:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="highLife.war">
+      <element id="artifact" artifact-name="HighLife:war exploded" />
+    </root>
+  </artifact>
+</component>
