@@ -1,9 +1,7 @@
 package com.glyfly.main.config;
 
-import com.glyfly.main.controller.NewsController;
-import com.glyfly.main.controller.UserController;
-import com.glyfly.main.model.NewsModel;
-import com.glyfly.main.model.UserModel;
+import com.glyfly.main.controller.*;
+import com.glyfly.main.model.*;
 import com.jfinal.config.*;
 import com.jfinal.core.JFinal;
 import com.jfinal.kit.PropKit;
@@ -30,8 +28,11 @@ public class AppConfig extends JFinalConfig {
     }
 
     public void configRoute(Routes routes) {
+        routes.add("/highlife/launcher", LauncherController.class);
+        routes.add("/highlife", LoginController.class);
         routes.add("/highlife/user", UserController.class);
-        routes.add("/highlife/news", NewsController.class);
+        routes.add("/highlife/know/question", QuestionController.class);
+        routes.add("/highlife/know/answer", AnswerController.class);
     }
 
     public void configEngine(Engine engine) {
@@ -45,8 +46,11 @@ public class AppConfig extends JFinalConfig {
 
         // 配置ActiveRecord插件
         ActiveRecordPlugin arp = new ActiveRecordPlugin(druidPlugin);
-        arp.addMapping("USER", UserModel.class);
-        arp.addMapping("NEWS", NewsModel.class);
+        arp.addMapping("user", UserModel.class);
+        arp.addMapping("user_login", UserLoginModel.class);
+        arp.addMapping("know_questions", QuestionModel.class);
+        arp.addMapping("know_answers", AnswerModel.class);
+        arp.addMapping("news", NewsModel.class);
         plugins.add(arp);
     }
 

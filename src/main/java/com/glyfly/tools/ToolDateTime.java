@@ -202,6 +202,40 @@ public abstract class ToolDateTime {
 	}
 
 	/**
+	 * 时间差，返回"XX天（小时/分钟/秒）前"
+	 *
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	public static String getBetween(long start, long end) {
+		long between = (end - start) / 1000;// 除以1000是为了转换成秒
+		long day = between / (24 * 3600);
+		long hour = between  / 3600;
+		long minute = between / 60;
+		long second = between;
+
+		StringBuilder sb = new StringBuilder();
+		if (day > 10) {
+			sb.append(format(new Date(between * 1000), "yyyy-MM-dd HH:mm:ss"));
+		}else if (day > 0){
+			sb.append(day);
+			sb.append("天前");
+		}else if (hour > 0){
+			sb.append(hour);
+			sb.append("小时前");
+		}else if (minute > 0){
+			sb.append(minute);
+			sb.append("分钟前");
+		}else if (second > 0){
+			sb.append(second);
+			sb.append("秒前");
+		}
+
+		return sb.toString();
+	}
+
+	/**
 	 * 两个日期的时间差，返回"X天X小时X分X秒"
 	 * 
 	 * @param start
